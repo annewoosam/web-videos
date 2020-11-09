@@ -4,23 +4,25 @@ import datetime
 
 db = SQLAlchemy()
 
-# test = YourClassNameHereInTitleCaseSingular(channel_name='WinningCheckers', email_date='2020-01-31',number_subscribers = '1', month_end_at='2019-12-31', subscribers='0', views='1', minutes_watched='2', likes='3', comments='4', posts='5', shares='6')
+# test = Video(channel_name='WinningCheckers', email_date='2020-01-31',number_subscribers = '1', month_end_at='2019-12-31', subscribers='0', views='1', minutes_watched='2', likes='3', comments='4', posts='5', shares='6')
 
-class YourClassNameHereInTitleCaseSingular(db.Model):
+class Video(db.Model):
     """A class for creator ."""
     
-    __tablename__ = 'YourTableNameHereLowerCasePlural'
+    __tablename__ = 'videos'
 
-    YourPrimaryIDColumnNameHereLowerCase_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    video_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
 
-    YourColumnNameHereLowerCase = db.Column(YourDBTypeHereAsdb.typeSuchAsStringIntegerDate)
+    channel_name = db.Column(db.String)
 
-# keep repeating till all column names finished
+    web_title = db.Column(db.String)
+
+    youtube_title = db.Column(db.String)
 
     def __repr__(self):
-        return f'<YourClassNameHereInTitleCaseSingular YourPrimaryKeyVariableHere={self.YourPrimaryKeyVariableHere} SecondColumnVariableNameHere={self.SecondColumnVariableNameHere}>'
+        return f'<Video video_id={self.video_id} channel_name={self.channel_name}>'
 
-def connect_to_db(flask_app, db_uri='postgresql:///YourDatabaseNamehere', echo=True):
+def connect_to_db(flask_app, db_uri='postgresql:///web_videos', echo=True):
    
     flask_app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
    

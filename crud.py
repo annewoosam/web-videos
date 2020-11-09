@@ -1,27 +1,27 @@
 """CRUD operations."""
 
-from model import db, YourClassNameHereInTitleCaseSingular, connect_to_db
+from model import db, Video, connect_to_db
 
 import datetime
 
 
-def create_YourClassNameHereInLowerCaseSingular(YourColumnNamesHereSeparatedByCommasExcludingPrimaryKeyColumn):
+def create_video(channel_name, web_title, youtube_title):
    
 
-    YourClassNameHereInLowerCaseSingular = YourClassNameHereInTitleCaseSingular(YourColumnName=YourColumnName,
-                  YourNextColumnNameUntilLast=YourNextColumnNameUntilLast,
-                  YourLastColumnName=YourLastColumnName)
+    video = Video(channel_name=channel_name,
+                  web_title=web_title,
+                  youtube_title=youtube_title)
 
-    db.session.add(YourClassNameHereInLowerCaseSingular)
+    db.session.add(video)
 
     db.session.commit()
 
-    return YourClassNameHereInLowerCaseSingular
+    return video
 
-def get_YourClassNameHereInLowerCasePlural():
-    """Return all rows of YourClassNameHereInLowerCaseSingular monthly data."""
+def get_videos():
+    """Return all rows of video data."""
 
-    return YourClassNameHereInTitleCaseSingular.query.all()
+    return Video.query.all()
  
 if __name__ == '__main__':
     from server import app

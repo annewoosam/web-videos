@@ -13,32 +13,32 @@ import model
 import server
 
 
-os.system('dropdb YourFolderUnderscoredAsDatabaseNameHere')
+os.system('dropdb web_videos')
 
-os.system('createdb YourFolderUnderscoredAsDatabaseNameHere')
+os.system('createdb web_videos')
 
 model.connect_to_db(server.app)
 
 model.db.create_all()
 
 
-# Create YourModelNameLowerCasedHere table's initial data.
+# Create video table's initial data.
 
-with open('data/YourModelNameLowerCasedSingularHere.json') as f:
+with open('data/video.json') as f:
 
-    YourModelNameLowerCasedSingularHere_data = json.loads(f.read())
+    video_data = json.loads(f.read())
 
-YourModelNameLowerCasedSingularHere_in_db = []
+video_in_db = []
 
-for YourModelNameLowerCasedSingularHere in YourModelNameLowerCasedSingularHere_data:
-    columnNamesSeparatedbyCommasUntilLastOne= (
-                                   YourModelNameLowerCasedSingularHere['YourFirstColumnNameHere'],
-                                   YourModelNameLowerCasedSingularHere['YourNextColumnNameHereTillLast'],
-                                   YourModelNameLowerCasedSingularHere['YourLastColumnNameHere'])
+for video in video_data:
+    channel_name, web_title, youtube_title= (
+                                   video['channel_name'],
+                                   video['web_title'],
+                                   video['youtube_title'])
 
-    db_YourModelNameLowerCasedSingularHere = crud.create_YourModelNameLowerCasedSingularHere(
-                                 YourFirstColumnNameHere,
-                                 YourNextColumnNameHereTillLast,
-                                 YourLastColumnNameHere)
+    db_video = crud.create_video(
+                                 channel_name,
+                                 web_title,
+                                 youtube_title)
 
-    YourModelNameLowerCasedSingularHere_in_db.append(db_YourModelNameLowerCasedSingularHere)
+    video_in_db.append(db_video)

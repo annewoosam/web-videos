@@ -10,7 +10,7 @@ db = SQLAlchemy()
 
 # created import allowing connection to database
 
-from model import connect_to_db, YourModelNameTitleCaseSingularStats, db
+from model import connect_to_db, Video, db
 
 app = Flask(__name__)
 
@@ -25,21 +25,19 @@ import crud
 
 @app.route('/')
 
-def all_YourModelNameLowerCasePluralStats():
+def all_videos():
 
-    stats=crud.get_YourModelNameLowerCasePlural()
+    stats=crud.get_videos()
     
-    YourVariableName=[q[0] for q in db.session.query(YourModelNameInTitleCaseHere.YourVariableName).all()]
+    video_id=[q[0] for q in db.session.query(Video.video_id).all()]
 
-    YourNextVariableName=[q[0] for q in db.session.query(YourModelNameInTitleCaseHere.YourNextVariableName).all()]
-     
-    #repeat till next to last variable accounted for
+    channel_name=[q[0] for q in db.session.query(Video.channel_name).all()]
       
-    YourLastVariableName=[q[0] for q in db.session.query(YourModelNameInTitleCaseHere.YourLastVariableName).all()]
-    
-    # repeat through all columns needed
+    web_title=[q[0] for q in db.session.query(Video.web_title).all()]
 
-    return render_template('YourModelNameLowerCasePlural.html', YourVariable_Name=YourVariable_Name, YourNextVariableName=YourNextVariableName, YourLastVariableName=YourLastVariableName)
+    youtube_title=[q[0] for q in db.session.query(Video.youtube_title).all()]
+
+    return render_template('videos.html', video_id=video_id, channel_name=channel_name, web_title=web_title, youtube_title=youtube_title)
 
 if __name__ == '__main__':
 
